@@ -1,4 +1,5 @@
 #!/bin/bash
+KERN=/tmp/src/android/kernel
 
 # Setup build in /tmp
 git clone https://github.com/Kitauji-High-School/android_kernel_xiaomi_earth.git -b ksu-testing kernel --depth=1
@@ -15,7 +16,7 @@ export TZ="Asia/Jakarta"
 # setup clang path
 mkdir -p clang
 wget https://github.com/AbuRider/scripts/releases/download/20260502/clang-r596125.tar.gz | tar -xz -C clang
-export PATH=$PWD/clang/bin:$PATH
+export PATH=$KERN/clang/bin:$PATH
 
 make O=out ARCH=arm64 earth_defconfig
 make -j $(nproc) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
