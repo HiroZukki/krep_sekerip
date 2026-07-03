@@ -33,7 +33,7 @@ make -j$(nproc --all) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
 	CROSS_COMPILE="aarch64-linux-gnu-" \
 	CROSS_COMPILE_ARM32="arm-linux-gnueabi-" \
 	CROSS_COMPILE_COMPAT="arm-linux-gnueabi-" \
-    CONFIG_DEBUG_SECTION_MISMATCH=y
+	CONFIG_DEBUG_SECTION_MISMATCH=y
 
 # Anykernel
 git clone https://github.com/AbuRider/Anykernel3 Anykernel3
