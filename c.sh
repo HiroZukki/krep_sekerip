@@ -1,5 +1,5 @@
 #!/bin/bash
-KERN=/tmp/src/android/kernel
+KERN="/tmp/src/android/kernel"
 
 # Setup build in /tmp
 git clone https://github.com/Kitauji-High-School/android_kernel_xiaomi_earth.git -b ksu-testing kernel --depth=1
