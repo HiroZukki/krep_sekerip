@@ -19,7 +19,7 @@ wget https://github.com/AbuRider/scripts/releases/download/20260502/clang-r59612
 export PATH=$KERN/clang/bin:$PATH
 
 make O=out ARCH=arm64 earth_defconfig
-make -j $(nproc) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
+make -j$(nproc --all) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
 	CC="clang" \
 	AR="llvm-ar" \
 	NM="llvm-nm" \
