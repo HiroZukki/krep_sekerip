@@ -31,7 +31,6 @@ make -j $(nproc) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
 	CROSS_COMPILE="aarch64-linux-gnu-" \
 	CROSS_COMPILE_ARM32="arm-linux-gnueabi-" \
 	CROSS_COMPILE_COMPAT="arm-linux-gnueabi-" \
-	INSTALL_MOD_STRIP=1 \
 	KBUILD_BUILD_USER="kumiko" \
 	KBUILD_BUILD_HOST="kitauji_quartet"	
 
