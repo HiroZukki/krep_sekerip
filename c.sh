@@ -15,7 +15,7 @@ mka bacon
 # Upload to gofile
 echo "Upload to gofile will be started..."
 if [ -f out/target/product/earth/*.zip ]; then
-    wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
-	chmod +x upload.sh ; ./upload.sh out/target/product/earth/*202607*.zip
+  wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
+  chmod +x upload.sh ; ./upload.sh out/target/product/earth/*202607*.zip
 fi
 echo "hame"
