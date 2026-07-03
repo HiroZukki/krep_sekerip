@@ -1,53 +1,21 @@
 #!/bin/bash
 
-# Setup build in /tmp
-git clone https://github.com/Kitauji-High-School/android_kernel_xiaomi_earth.git -b ksu-testing kernel --depth=1
-cd kernel
+repo init --depth=1 -u https://github.com/Lunaris-AOSP/android -b test --git-lfs
+/opt/crave/resync.sh # sync source
 
-# Setup KernelSU
-curl -LSs "https://raw.githubusercontent.com/backslashxx/KernelSU/refs/heads/master/kernel/setup.sh" | bash -s master
+git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git -b Lunaris-16.2 device/xiaomi/earth
 
-# Script kernel build
-export zipname="SoundScape!-KSU"
-export build_time="$(date +"%Y%m%d")-$(date +"%H%M%S")"
-export TZ="Asia/Jakarta"
-export PWD="/tmp/src/android/kernel"
-export KBUILD_BUILD_USER="kumiko" 
-export KBUILD_BUILD_HOST="kitauji_quartet"	
+export BUILD_USERNAME=kumiko
+export BUILD_HOSTNAME=kitauji_quartet
 
-# setup clang path
-mkdir -p clang
-wget https://github.com/AbuRider/scripts/releases/download/20260502/clang-r596125.tar.gz | tar -xz -C clang
-export PATH=$PWD/clang/bin:$PATH
+. build/envsetup.sh
+lunch lineage_earth-bp4a-userdebug
+mka bacon
 
-make O=out ARCH=arm64 earth_defconfig
-make -j$(nproc --all) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
-	CC="clang" \
-	AR="llvm-ar" \
-	NM="llvm-nm" \
-	LD="ld.lld -S" \
-	OBJCOPY="llvm-objcopy" \
-	OBJDUMP="llvm-objdump" \
-	STRIP="llvm-strip" \
-	CLANG_TRIPLE="aarch64-linux-gnu-" \
-	CROSS_COMPILE="aarch64-linux-gnu-" \
-	CROSS_COMPILE_ARM32="arm-linux-gnueabi-" \
-	CROSS_COMPILE_COMPAT="arm-linux-gnueabi-" \
-	CONFIG_DEBUG_SECTION_MISMATCH=y
-
-# Anykernel
-git clone https://github.com/AbuRider/Anykernel3 Anykernel3
-if [ -f out/arch/arm64/boot/Image.gz-dtb ]; then
-  cp out/arch/arm64/boot/Image.gz Anykernel3/
-  cp out/arch/arm64/boot/dts/mediatek/mt6768.dtb Anykernel3/dtb
-  cd Anykernel3
-  zip -r9 "../Anykernel3-${zipname}-${build_time}-earth.zip" * -x '.git*'
-  cd ..
+# Upload to gofile
+echo "Upload to gofile will be started..."
+if [ -f out/target/product/earth/*.zip ]; then
+    wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
+	chmod +x upload.sh ; ./upload.sh out/target/product/earth/*202607*.zip
 fi
-
-# Setup Upload to gofile
-if [ -f Anykernel3-*.zip ]; then
-  wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh ; chmod +x upload.sh
-  ./upload.sh Anykernel3-*.zip
-fi
-
+echo "hame"
