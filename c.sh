@@ -1,5 +1,4 @@
 #!/bin/bash
-PWD="/tmp/src/android/kernel"
 
 # Setup build in /tmp
 git clone https://github.com/Kitauji-High-School/android_kernel_xiaomi_earth.git -b ksu-testing kernel --depth=1
@@ -12,6 +11,9 @@ curl -LSs "https://raw.githubusercontent.com/backslashxx/KernelSU/refs/heads/mas
 export zipname="SoundScape!-KSU"
 export build_time="$(date +"%Y%m%d")-$(date +"%H%M%S")"
 export TZ="Asia/Jakarta"
+export PWD="/tmp/src/android/kernel"
+export KBUILD_BUILD_USER="kumiko" 
+export KBUILD_BUILD_HOST="kitauji_quartet"	
 
 # setup clang path
 mkdir -p clang
@@ -31,8 +33,7 @@ make -j$(nproc --all) ARCH=arm64 SUBARCH=arm64 O=out LLVM=1 LLVM_IAS=1
 	CROSS_COMPILE="aarch64-linux-gnu-" \
 	CROSS_COMPILE_ARM32="arm-linux-gnueabi-" \
 	CROSS_COMPILE_COMPAT="arm-linux-gnueabi-" \
-	KBUILD_BUILD_USER="kumiko" \
-	KBUILD_BUILD_HOST="kitauji_quartet"	
+    CONFIG_DEBUG_SECTION_MISMATCH=y
 
 # Anykernel
 git clone https://github.com/AbuRider/Anykernel3 Anykernel3
