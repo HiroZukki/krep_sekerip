@@ -8,7 +8,7 @@ git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git
 
 # Edit Source 
 rm -rf vendor/prebuilts vendor/lineage
-git clone https://github.com/SilverEuphonium/vendor_lineage.git -b 16.2 vendor/lineage
+git clone --depth=1 https://github.com/SilverEuphonium/vendor_lineage.git -b 16.2 vendor/lineage
 
 export BUILD_USERNAME=kumiko
 export BUILD_HOSTNAME=kitauji_quartet
