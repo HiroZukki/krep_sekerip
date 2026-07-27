@@ -1,15 +1,18 @@
 #!/bin/bash
 
-repo init --depth=1 -u https://github.com/SilverEuphonium/android_manifest.git -b 16.0 --git-lfs --no-clone-bundle
-/opt/crave/resync.sh # sync source
+# repo init --depth=1 -u https://github.com/SilverEuphonium/android_manifest.git -b 16.0 --git-lfs --no-clone-bundle
+# /opt/crave/resync.sh # sync source
 
+rm -rf device/xiaomi/earth
 git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git -b crDroid-16.2 device/xiaomi/earth
 
 export BUILD_USERNAME=kumiko
 export BUILD_HOSTNAME=kitauji_quartet
 
 . build/envsetup.sh
-brunch earth userdebug
+lunch lineage_earth-bp4a-userdebug
+make installclean
+mka bacon
 
 # Upload to gofile
 echo "Upload to gofile will be started..."
