@@ -1,13 +1,14 @@
 #!/bin/bash
+rm -rf .repo/local_manifests
 
 # init rom source 
 repo init -u https://github.com/AbuRider/evolusix_manifest.git -b cnb --git-lfs --depth=1
 
+# Device source
+git clone https://github.com/SilverEuphonium/gatau-ap.git -b evok .repo/local_manifests
+
 # Sync source
 /opt/crave/resync.sh
-
-# Device source
-git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git -b EvolutionX-17.0 device/xiaomi/earth
 
 export BUILD_USERNAME=kumiko
 export BUILD_HOSTNAME=kitauji_quartet
