@@ -1,30 +1,24 @@
 #!/bin/bash
-rm -rf .repo/local_manifests
 
-# Init source
-repo init -u https://github.com/Pixelify-AOSP/platform_manifest -b 17 --git-lfs --depth=1
+# init rom source 
+repo init -u https://github.com/AbuRider/evolusix_manifest.git -b cnb --git-lfs --depth=1
 
-# Clone local manifests
-git clone https://github.com/SilverEuphonium/gatau-ap.git -b ascp .repo/local_manifests
+# Sync source
+/opt/crave/resync.sh
 
-# sync source 
-if [ -f /opt/crave/resync.sh ]; then
-    /opt/crave/resync.sh
-else
-    repo sync -c --force-sync --no-tags --no-clone-bundle
-fi
+# Device source
+git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git -b EvolutionX-17.0 device/xiaomi/earth
 
 export BUILD_USERNAME=kumiko
 export BUILD_HOSTNAME=kitauji_quartet
 
+# build start
 . build/envsetup.sh
-lunch earth-cp2a-userdebug
-mka bacon
+lunch lineage_earth-cp2a-userdebug
+m evolution
 
-# Upload to gofile
-echo "Upload to gofile will be started..."
+# Upload files to gofile
 if [ -f out/target/product/earth/*202607*.zip ]; then
     wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
-    chmod +x upload.sh ; ./upload.sh out/target/product/earth/boot.img ; ./upload.sh out/target/product/earth/*202607*.zip 
+    chmod +x upload.sh ; ./upload.sh out/target/product/earth/boot.img ; ./upload.sh out/target/product/earth/*202607*.zip
 fi
-echo "hame"
