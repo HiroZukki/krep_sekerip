@@ -2,7 +2,7 @@
 rm -rf .repo/local_manifests
 
 # Init source
-repo init --depth=1 -u https://github.com/SilverEuphonium/android_manifest.git -b 16.0 --git-lfs --no-clone-bundle
+repo init -u https://github.com/Pixelify-AOSP/platform_manifest -b 17 --git-lfs --depth=1
 
 # Clone local manifests
 git clone https://github.com/SilverEuphonium/gatau-ap.git -b ascp .repo/local_manifests
