@@ -10,7 +10,8 @@ git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git
 
 # Patching FWB
 cd frameworks/base
-wget https://raw.githubusercontent.com/AbuRider/scripts/refs/heads/main/fwb.patch ; git am fwb.patch
+wget https://raw.githubusercontent.com/AbuRider/scripts/refs/heads/main/fwb.patch
+git am fwb.patch ; rm -rf fwb.patch
 cd ../..
 
 # Custom sources
