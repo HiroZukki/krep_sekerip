@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # init rom source 
-# repo init -u https://github.com/Kitauji-High-School/lunaris_manifests.git -b 16.2 --git-lfs --depth=1
-# /opt/crave/resync.sh # sync source
+repo init -u https://github.com/Kitauji-High-School/lunaris_manifests.git -b 16.2 --git-lfs --depth=1
+/opt/crave/resync.sh # sync source
 
 # Device sources
 rm -rf device/xiaomi/earth vendor/xiaomi/earth kernel/xiaomi/earth
