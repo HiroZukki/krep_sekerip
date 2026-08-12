@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# init rom source 
 repo init -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs --depth=1
-/opt/crave/resync.sh # sync source
 
-# Device sources
-rm -rf device/xiaomi/earth vendor/xiaomi/earth kernel/xiaomi/earth
-git clone https://github.com/Kitauji-High-School/android_device_xiaomi_earth.git -b Lunaris-16.2 device/xiaomi/earth
+git clone https://github.com/HiroZukki/gatau-ap.git -b personal .repo/local_manifests
+
+/opt/crave/resync.sh # sync source
 
 # Patching FWB
 cd frameworks/base
@@ -14,17 +12,12 @@ wget https://raw.githubusercontent.com/AbuRider/scripts/refs/heads/main/fwb.patc
 git am fwb.patch ; rm -rf fwb.patch
 cd ../..
 
-# Custom sources
-rm -rf vendor/lineage
-git clone https://github.com/Kitauji-High-School/vendor_lineage.git -b 16.2 vendor/lineage --depth=1
-
 export BUILD_USERNAME=kumiko
 export BUILD_HOSTNAME=kitauji_quartet
 
 # build start
 . build/envsetup.sh
 lunch lineage_earth-bp4a-userdebug
-make installclean
 m bacon
 
 # Upload files to gofile
