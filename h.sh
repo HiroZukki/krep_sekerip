@@ -7,7 +7,7 @@ git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b Lunaris-16.2 d
 
 # Custom Source 
 rm -rf vendor/lineage
-git clone https://github.com/HiroZukki/vendor_lineage.git -b 16.2 vendor/lineage
+git clone https://github.com/HiroZukki/vendor_lineage.git -b 16.2 vendor/lineage --depth=1
 
 export BUILD_USERNAME=zukki
 export BUILD_HOSTNAME=sweet_bullet
