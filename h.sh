@@ -1,10 +1,9 @@
 #!/bin/bash
 
 repo init -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs --depth=1
-
-git clone https://github.com/HiroZukki/gatau-ap.git -b personal .repo/local_manifests
-
 /opt/crave/resync.sh # sync source
+
+git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b Lunaris-16.2 device/xiaomi/earth
 
 # Custom Source 
 rm -rf vendor/lineage
