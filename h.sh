@@ -21,7 +21,7 @@ m bacon
 echo "Upload to gofile will be started..."
 if [ -f out/target/product/earth/*202608*.zip ]; then
     wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
-    chmod +x upload.sh ; ./upload.sh out/target/product/earth/boot.img ; ./upload.sh out/target/product/earth/*202608*.zip
+    chmod +x upload.sh ; ./upload.sh out/target/product/earth/*202608*.zip
     echo "Upload Done!"
 else
     echo "No zip found!" 
