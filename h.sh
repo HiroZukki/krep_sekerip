@@ -6,14 +6,12 @@ git clone https://github.com/HiroZukki/gatau-ap.git -b personal .repo/local_mani
 
 /opt/crave/resync.sh # sync source
 
-# Patching FWB
-cd frameworks/base
-wget https://raw.githubusercontent.com/AbuRider/scripts/refs/heads/main/fwb.patch
-git am fwb.patch ; rm -rf fwb.patch
-cd ../..
+# Custom Source 
+rm -rf vendor/lineage
+git clone https://github.com/HiroZukki/vendor_lineage.git -b 16.2 vendor/lineage
 
-export BUILD_USERNAME=kumiko
-export BUILD_HOSTNAME=kitauji_quartet
+export BUILD_USERNAME=zukki
+export BUILD_HOSTNAME=sweet_bullet
 
 # build start
 . build/envsetup.sh
