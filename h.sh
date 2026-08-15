@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf vendor/lineage
 
 repo init -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
