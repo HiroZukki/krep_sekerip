@@ -1,5 +1,6 @@
 #!/bin/bash
-rm -rf vendor/lineage
+
+rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/lineage
 
 repo init -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
@@ -16,6 +17,7 @@ export BUILD_HOSTNAME=sweet_bullet
 # build start
 . build/envsetup.sh
 lunch lineage_earth-bp4a-userdebug
+make installclean
 m bacon
 
 # Upload files to gofile
