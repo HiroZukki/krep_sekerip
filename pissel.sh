@@ -19,6 +19,7 @@ export SOONG_NINJA=ninja
 
 # start build
 breakfast earth userdebug
+make installclean
 m pixelos
 
 # Upload files to gofile
