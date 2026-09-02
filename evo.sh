@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remove GCC since it's not needed in A17 and causing sync error
-rm -rf prebuilts/gcc/linux-x86/x86 prebuilts/gcc/linux-x86/arm prebuilts/gcc/linux-x86/aarch64 # https://github.com/Evolution-X/manifest/commit/de40b9789872d37f5bfd3ad703f801701c0e9ca6
+rm -rf prebuilts/gcc/linux-x86/x86 prebuilts/gcc/linux-x86/arm prebuilts/gcc/linux-x86/aarch64 # https://github.com/LineageOS/android/commit/de40b9789872d37f5bfd3ad703f801701c0e9ca6
 
 # repo init
 repo init -u https://github.com/Evolution-X/manifest -b cnb --git-lfs --depth=1
