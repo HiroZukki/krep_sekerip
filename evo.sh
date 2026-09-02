@@ -1,22 +1,35 @@
 #!/bin/bash
-rm -rf prebuilts/clang/host/linux-x86
 
-repo init -u https://github.com/Evolution-X/manifest.git -b bq2 --git-lfs
-/opt/crave/resync.sh || repo sync
+# repo init
+repo init -u https://github.com/Evolution-X/manifest -b cnb --git-lfs --depth=1
+/opt/crave/resync.sh # sync source
 
-git clone https://github.com/SilverEuphonium/android_device_xiaomi_earth.git -b EvolutionX-16.2 device/xiaomi/earth
-git clone https://github.com/AbuRider/vendor_xiaomi_earth.git -b 16.2 vendor/xiaomi/earth 
-git clone https://github.com/AbuRider/android_kernel_xiaomi_earth.git -b 16.2-staging kernel/xiaomi/earth --depth=1
+# device source
+git clone https://github.com/dreamsolister26/android_device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth
 
-git clone https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-23.2 hardware/xiaomi
-git clone https://github.com/LineageOS/android_hardware_mediatek.git -b lineage-23.2 hardware/mediatek
-git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr.git -b lineage-23.2 device/mediatek/sepolicy_vndr
-git clone https://github.com/AbuRider/sign.git -b evok vendor/evolution-priv/keys
-git clone https://github.com/MillenniumOSS/android_vendor_mediatek_ims.git -b sixteen-qpr2 vendor/mediatek/ims
+# Patching build soong
+cd build/soong
+curl -LSs "https://github.com/sweet-bullet/build_soong_evo/commit/1785dc569e3a95ac11ebe8658424123abffd4a98.patch" -o soong.patch
+git am soong.patch ; rm -rf soong.patch
+cd ../..
 
-export BUILD_USERNAME=kumiko
-export BUILD_HOSTNAME=clarinet_quartet
-
+# build start
 . build/envsetup.sh
-lunch lineage_earth-bp4a-userdebug
+
+export BUILD_USERNAME=zukki
+export BUILD_HOSTNAME=sweet_bullet
+export SOONG_NINJA=ninja
+
+# start build
+lunch lineage_earth-cp2a-userdebug
 m evolution
+
+# Upload files to gofile
+echo "Upload to gofile will be started..."
+if [ -f out/target/product/earth/*202609*.zip ]; then
+    wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
+    chmod +x upload.sh ; ./upload.sh out/target/product/earth/*202609*.zip
+    echo "Upload Done!"
+else
+    echo "No zip found!" 
+fi
