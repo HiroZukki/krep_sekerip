@@ -5,7 +5,7 @@
 # /opt/crave/resync.sh # sync source
 
 # Clean up device source
-rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
+rm -rf device/xiaomi/earth vendor/xiaomi/earth
 rm -rf hardware/mediatek hardware/xiaomi device/mediatek/sepolicy_vndr
 
 # device source
