@@ -9,7 +9,7 @@ rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
 rm -rf hardware/mediatek hardware/xiaomi device/mediatek/sepolicy_vndr vendor/mediatek/ims
 
 # device source
-git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth
+git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth --depth=1
 
 # build start
 . build/envsetup.sh
