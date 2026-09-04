@@ -9,11 +9,11 @@ git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b Voltage-17 dev
 
 # Patching build soong
 cd build/soong
-curl -LSs "https://github.com/sweet-bullet/build_soong_voltage/commit/0cd8b1e3a0537e8cebae8cfde258215693169617.patch" -o soong.patch
-git am soong.patch ; rm -rf soong.patch
+wget https://raw.githubusercontent.com/HiroZukki/krep_sekerip/refs/heads/main/patch_soong.patch
+git am patch_soong.patch ; rm -rf patch_soong.patch
 cd ../..
 
-# build start
+# setup build enviroment
 . build/envsetup.sh
 
 export BUILD_USERNAME=zukki
