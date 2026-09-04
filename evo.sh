@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Clean up device source
 rm -rf device/xiaomi/earth vendor/xiaomi/earth kernel/xiaomi/earth
 rm -rf hardware/mediatek hardware/xiaomi device/mediatek/sepolicy_vndr
