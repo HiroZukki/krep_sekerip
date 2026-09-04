@@ -1,0 +1,32 @@
+From 0cd8b1e3a0537e8cebae8cfde258215693169617 Mon Sep 17 00:00:00 2001
+From: mayuresh2543 <mayureshnanal846@gmail.com>
+Date: Sat, 29 Aug 2026 07:50:29 +0700
+Subject: [PATCH] soong_build: enforce 45GiB memory limit and aggressive GC
+
+Signed-off-by: dreamsolister26 <oumaekumiko123@gmail.com>
+---
+ cmd/soong_build/main.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/cmd/soong_build/main.go b/cmd/soong_build/main.go
+index 335d3d8f2e..e2494bfd71 100644
+--- a/cmd/soong_build/main.go
++++ b/cmd/soong_build/main.go
+@@ -21,6 +21,7 @@ import (
+ 	"fmt"
+ 	"os"
+ 	"path/filepath"
++	"runtime/debug"
+ 	"runtime"
+ 	"strings"
+ 	"time"
+@@ -314,6 +315,9 @@ func parseAvailableEnv() map[string]string {
+ }
+ 
+ func main() {
++	debug.SetMemoryLimit(45 * 1024 * 1024 * 1024)
++	debug.SetGCPercent(25)
++
+ 	flag.Parse()
+ 
+ 	if cmdlineArgs.Memprofile == "" {
