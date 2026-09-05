@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf device/xiaomi/earth
+rm -rf device/xiaomi/earth vendor/xiaomi/earth kernel/xiaomi/earth
 rm -rf hardware/xiaomi hardware/mediatek device/mediatek/sepolicy_vndr
 
 # repo init
@@ -8,7 +8,7 @@ repo init -u https://github.com/aobuta-prjkt/pixelos_manifest.git -b seventeen -
 /opt/crave/resync.sh # sync source
 
 # device source
-git clone https://github.com/dreamsolister26/android_device_xiaomi_earth.git -b PixelOS-17 device/xiaomi/earth
+git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b PixelOS-17 device/xiaomi/earth
 
 # build start
 . build/envsetup.sh
