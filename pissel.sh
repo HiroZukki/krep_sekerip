@@ -29,5 +29,6 @@ if [ -f out/target/product/earth/*202609*.zip ]; then
     chmod +x upload.sh ; ./upload.sh out/target/product/earth/PixelOS_*.zip
     echo "Upload Done!"
 else
-    echo "No zip found!" 
+    echo "No zip found!"
+    exit 1
 fi
