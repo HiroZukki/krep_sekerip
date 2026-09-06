@@ -19,7 +19,7 @@ export BUILD_HOSTNAME=sweet_bullet
 # build start
 . build/envsetup.sh
 lunch lineage_earth-bp4a-userdebug
-m evolution
+mka bacon
 
 # Upload files to gofile
 echo "Upload to gofile will be started..."
