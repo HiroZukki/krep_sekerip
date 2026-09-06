@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf device/xiaomi/earth vendor/xiaomi/earth kernel/xiaomi/earth
+rm -rf device/xiaomi/earth # vendor/xiaomi/earth kernel/xiaomi/earth
 rm -rf hardware/xiaomi hardware/mediatek device/mediatek/sepolicy_vndr
 
 # repo init
