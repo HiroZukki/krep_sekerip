@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf device/xiaomi/earth
+
 # repo init
 repo init -u https://github.com/Lunaris-AOSP/android.git -b 16.2 --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
