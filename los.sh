@@ -1,19 +1,13 @@
 #!/bin/bash
 
-rm -rf device/xiaomi/earth
-
 # repo init
 repo init -u https://github.com/Lunaris-AOSP/android.git -b 16.2 --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
 
 # device source
+rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
+rm -rf hardware/mediatek hardware/xiaomi device/mediatek/sepolicy_vndr vendor/lineage-priv/keys
 git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b Lunaris-16.2 device/xiaomi/earth --depth=1
-
-# patch source 
-cd vendor/lineage
-curl -LSs "https://github.com/HiroZukki/vendor_lineage/commit/f7ace4c4069511d89b687904178060e0b89fb275.patch" -o vendor.patch
-git am vendor.patch ; rm -rf vendor.patch
-cd ../..
 
 export BUILD_USERNAME=zukki
 export BUILD_HOSTNAME=sweet_bullet
@@ -21,6 +15,7 @@ export BUILD_HOSTNAME=sweet_bullet
 # build start
 . build/envsetup.sh
 lunch lineage_earth-bp4a-userdebug
+make installclean
 mka bacon
 
 # Upload files to gofile
