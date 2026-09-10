@@ -16,7 +16,7 @@ export BUILD_HOSTNAME=sweet_bullet
 export SOONG_NINJA=ninja
 
 # start build
-lunch lineage_earth-cp2a-userdebug
+lunch lineage_earth-cp2a-user
 make installclean
 m evolution
 
