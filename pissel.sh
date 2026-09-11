@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Clean up device source
+rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
+rm -rf hardware/xiaomi hardware/mediatek device/mediatek/sepolicy_vndr vendor/mediatek/ims
+
 # repo init
 repo init -u https://github.com/aobuta-prjkt/pixelos_manifest.git -b seventeen --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
@@ -16,6 +20,7 @@ export SOONG_NINJA=ninja
 
 # start build
 breakfast earth userdebug
+make installclean
 m pixelos
 
 # Upload files to gofile
