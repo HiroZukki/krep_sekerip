@@ -1,0 +1,39 @@
+diff --git a/cmd/soong_build/main.go b/cmd/soong_build/main.go
+index aa8e29d..e1654fd 100644
+--- a/cmd/soong_build/main.go
++++ b/cmd/soong_build/main.go
+@@ -315,12 +315,8 @@ func parseAvailableEnv() map[string]string {
+ }
+ 
+ func main() {
+-	// Build-action generation keeps a large live heap.  Start collection before
+-	// the default 100% heap-growth target to avoid an avoidable RSS spike on
+-	// memory-constrained workstations.  An explicitly forwarded GOGC still wins.
+-	if os.Getenv("GOGC") == "" {
+-		debug.SetGCPercent(50)
+-	}
++	debug.SetMemoryLimit(45 * 1024 * 1024 * 1024)
++	debug.SetGCPercent(25)
+ 
+ 	flag.Parse()
+ 
+diff --git a/ui/build/soong.go b/ui/build/soong.go
+index b75cfd5..4521b4a 100644
+--- a/ui/build/soong.go
++++ b/ui/build/soong.go
+@@ -231,15 +231,6 @@ func (pb PrimaryBuilderFactory) primaryBuilderInvocation(config Config) bootstra
+ 		invocationEnv["GODEBUG"] = "asyncpreemptoff=1"
+ 	}
+ 
+-	// soong_build is launched by Ninja, whose regular action environment is
+-	// filtered.  Forward Go memory tuning explicitly so users can tune analysis
+-	// without enabling ALLOW_NINJA_ENV for the whole build.
+-	for _, name := range []string{"GOGC", "GOMEMLIMIT"} {
+-		if value := os.Getenv(name); value != "" {
+-			invocationEnv[name] = value
+-		}
+-	}
+-
+ 	var allArgs []string
+ 	allArgs = append(allArgs, pb.specificArgs...)
+ 
