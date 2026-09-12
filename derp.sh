@@ -26,6 +26,7 @@ export SOONG_NINJA=ninja
 
 # start build
 lunch lineage_earth-cp2a-userdebug
+make installclean
 mka derp
 
 # Upload files to gofile
