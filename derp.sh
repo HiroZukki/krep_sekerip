@@ -2,7 +2,10 @@
 
 # repo init
 repo init -u https://github.com/DerpFest-AOSP/android_manifest.git -b 17 --git-lfs --depth=1
+
+# Sync
 /opt/crave/resync.sh # sync source
+repo sync -c --force-sync --force-remove-dirty --no-tags --no-clone-bundle # For fixing sync error
 
 # device source
 git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b DerpFest-17 device/xiaomi/earth
