@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # repo init
-repo init -u https://github.com/sweet-bullet/evolution_manifest.git -b cnb --git-lfs --depth=1
-/opt/crave/resync.sh # sync source
+# repo init -u https://github.com/sweet-bullet/evolution_manifest.git -b cnb --git-lfs --depth=1
+# /opt/crave/resync.sh # sync source
 
 # device source
+rm -rf device/xiaomi/earth
 git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth --depth=1
 
 # build start
@@ -16,6 +17,7 @@ export SOONG_NINJA=ninja
 
 # start build
 lunch lineage_earth-cp2a-userdebug
+make installclean
 m evolution
 
 # Upload files to gofile
