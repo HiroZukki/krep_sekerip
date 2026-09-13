@@ -1,22 +1,22 @@
 #!/bin/bash
 
 # repo init
-repo init -u https://github.com/HiroZukki/lunaris_manifest.git -b 16.2 --git-lfs --depth=1
+repo init -u https://github.com/sweet-bullet/evolution_manifest.git -b cnb --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
 
 # device source
-rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
-rm -rf hardware/mediatek hardware/xiaomi device/mediatek/sepolicy_vndr vendor/lineage-priv/keys
-git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b Lunaris-16.2 device/xiaomi/earth --depth=1
-
-export BUILD_USERNAME=zukki
-export BUILD_HOSTNAME=sweet_bullet
+git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth --depth=1
 
 # build start
 . build/envsetup.sh
-lunch lineage_earth-bp4a-userdebug
-make installclean
-mka bacon
+
+export BUILD_USERNAME=zukki
+export BUILD_HOSTNAME=sweet_bullet
+export SOONG_NINJA=ninja
+
+# start build
+lunch lineage_earth-cp2a-userdebug
+m evolution
 
 # Upload files to gofile
 echo "Upload to gofile will be started..."
