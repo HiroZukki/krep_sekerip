@@ -4,9 +4,12 @@
 # repo init -u https://github.com/sweet-bullet/evolution_manifest.git -b cnb --git-lfs --depth=1
 # /opt/crave/resync.sh # sync source
 
+# Clean device source
+rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
+rm -rf hardware/mediatek hardware/xiaomi device/mediatek/sepolicy_vndr 
+
 # device source
-rm -rf device/xiaomi/earth
-git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth --depth=1
+git clone https://github.com/MinamiQuartet/android_device_xiaomi_earth.git -b EvolutionX-17 device/xiaomi/earth --depth=1
 
 # build start
 . build/envsetup.sh
