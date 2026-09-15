@@ -1,26 +1,20 @@
 #!/bin/bash
 
-# Clean up device source
-rm -rf device/xiaomi/earth kernel/xiaomi/earth vendor/xiaomi/earth
-rm -rf hardware/xiaomi hardware/mediatek device/mediatek/sepolicy_vndr vendor/mediatek/ims
-
 # repo init
 repo init -u https://github.com/aobuta-prjkt/pixelos_manifest.git -b seventeen --git-lfs --depth=1
 /opt/crave/resync.sh # sync source
 
 # device source
-git clone https://github.com/HiroZukki/device_xiaomi_earth.git -b PixelOS-17 device/xiaomi/earth
+git clone https://github.com/MinamiQuartet/android_device_xiaomi_earth.git -b PixelOS-17 device/xiaomi/earth
 
 # build start
 . build/envsetup.sh
 
-export BUILD_USERNAME=zukki
-export BUILD_HOSTNAME=sweet_bullet
-export SOONG_NINJA=ninja
+export BUILD_USERNAME=yuuko
+export BUILD_HOSTNAME=minami_quartet
 
 # start build
 breakfast earth userdebug
-make installclean
 m pixelos
 
 # Upload files to gofile
