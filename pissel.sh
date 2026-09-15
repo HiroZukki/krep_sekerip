@@ -15,6 +15,7 @@ git clone https://github.com/MinamiQuartet/android_device_xiaomi_earth.git -b Pi
 
 export BUILD_USERNAME=yuuko
 export BUILD_HOSTNAME=minami_quartet
+export SOONG_NINJA=ninja
 
 # start build
 breakfast earth userdebug
