@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# remove old device source
+rm -rf device/xiaomi/earth vendor/xiaomi/earth kernel/xiaomi/earth
+rm -rf hardware/xiaomi hardware/mediatek device/mediatek/sepolicy_vndr
+
 # repo init
 repo init -u https://github.com/aobuta-prjkt/pixelos_manifest.git -b seventeen --git-lfs --depth=1
 
@@ -19,6 +23,7 @@ export SOONG_NINJA=ninja
 
 # start build
 breakfast earth userdebug
+make installclean
 m pixelos
 
 # Upload files to gofile
