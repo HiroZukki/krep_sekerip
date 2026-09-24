@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # repo init
-repo init -u https://github.com/ProjectInfinity-X/manifest.git -b 17 --git-lfs --depth=1
+repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 17 -g default,-mips,-darwin,-notdefault
 
 # sync + remove dirty
 /opt/crave/resync.sh
