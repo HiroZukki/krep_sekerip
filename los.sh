@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # repo init
-repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 17 -g default,-mips,-darwin,-notdefault
+# repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 17 -g default,-mips,-darwin,-notdefault
 
 # sync + remove dirty
-/opt/crave/resync.sh
-repo sync -c --force-sync --force-remove-dirty --no-tags --no-clone-bundle # For fixing sync error
+# /opt/crave/resync.sh
+# repo sync -c --force-sync --force-remove-dirty --no-tags --no-clone-bundle # For fixing sync error
 
 # device source
-git clone https://github.com/MinamiQuartet/android_device_xiaomi_earth.git -b Infinity-17 device/xiaomi/earth
+# git clone https://github.com/MinamiQuartet/android_device_xiaomi_earth.git -b Infinity-17 device/xiaomi/earth
 
 # patch build/soong
-cd build/soong
-wget https://raw.githubusercontent.com/dreamsolister26/clarinet/refs/heads/main/soong.patch
-patch -p1 < soong.patch && rm -f soong.patch
-cd ../..
+# cd build/soong
+# wget https://raw.githubusercontent.com/dreamsolister26/clarinet/refs/heads/main/soong.patch
+# patch -p1 < soong.patch && rm -f soong.patch
+# cd ../..
 
 # build start
 . build/envsetup.sh
@@ -25,6 +25,7 @@ export SOONG_NINJA=ninja
 
 # start build
 lunch infinity_earth-userdebug
+make installclean
 mka bacon
 
 # Upload files to gofile
